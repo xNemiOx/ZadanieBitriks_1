@@ -1,5 +1,8 @@
 <?php
 
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 return array (
   'utf_mode' =>
   array (
@@ -24,20 +27,20 @@ return array (
     ),
     'readonly' => false,
   ),
-  'exception_handling' =>
-  array (
-    'value' =>
-    array (
-      'debug' => false,
-      'handled_errors_types' => 4437,
-      'exception_errors_types' => 4437,
-      'ignore_silence' => false,
-      'assertion_throws_exception' => true,
-      'assertion_error_type' => 256,
-      'log' => NULL,
+    'exception_handling' => array(
+        'value' => array(
+            'debug' => true,
+            'handled_errors_types' => E_ALL & ~E_NOTICE,
+            'exception_errors_types' => E_ERROR | E_PARSE | E_CORE_ERROR | E_COMPILE_ERROR | E_USER_ERROR,
+            'ignore_silence' => false,
+            'assertion_throws_exception' => true,
+            'assertion_error_type' => E_USER_ERROR,
+            'log' => array(
+                'file' => $_SERVER['DOCUMENT_ROOT'] . '/bitrix/logs/bitrix.log',
+                'log_size' => 1000000,
+            ),
+        ),
     ),
-    'readonly' => false,
-  ),
   'connections' =>
   array (
     'value' =>
